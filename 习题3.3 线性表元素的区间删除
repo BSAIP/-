@@ -1,0 +1,22 @@
+List Delete( List L, ElementType minD, ElementType maxD )
+{
+    int p,i;
+    for(i=0;i<=L->Last;i++)
+    {
+        if(L->Data[i]>minD&&L->Data[i]<maxD)
+        {
+            break;
+        }
+    }
+    p=i;
+    for(;i<=L->Last;i++)
+    {
+        if(L->Data[i]<=minD||L->Data[i]>=maxD)
+        {
+            L->Data[p]=L->Data[i];
+            p++;
+        }
+    }
+    L->Last=p-1;
+    return L;
+}
