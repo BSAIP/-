@@ -1,0 +1,27 @@
+#include <stdio.h>
+#define MAXN 100
+#define Swap(a,b) a^=b,b^=a,a^=b
+void Shift(int Array[],int n,int m);
+int main()
+{
+    int a[MAXN],n,m,i;
+    scanf("%d %d",&n,&m);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    m%=n;
+    Shift(a,n,m);
+    for(i=0;i<n-1;i++)
+    printf("%d ",a[i]);
+    printf("%d",a[n-1]);
+    return 0;
+}
+void Shift(int Array[],int n,int m)
+{
+    int i,j;
+    for(i=0,j=n-1;i<j;i++,j--)
+    Swap(Array[i],Array[j]);
+    for(i=0,j=n-1-m;i<j;i++,j--)
+    Swap(Array[i],Array[j]);
+    for(i=n-m,j=n-1;i<j;i++,j--)
+    Swap(Array[i],Array[j]);
+}
