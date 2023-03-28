@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main()
+{
+    int a,c;
+    char b;
+    scanf("%d%c",&a,&b);
+    while(b!='=')
+    {
+        scanf("%d",&c);
+        switch(b)
+        {
+            case '+':a+=c;break;
+            case '-':a-=c;break;
+            case '*':a*=c;break;
+            case '/':if(c==0)
+                    {
+                        printf("ERROR\n");
+                        return 0;
+                    }
+                    a/=c;break;
+            default:printf("ERROR\n");
+                    return 0;
+        }
+        scanf("%c",&b);
+    }
+    printf("%d\n",a);
+    return 0;
+}
