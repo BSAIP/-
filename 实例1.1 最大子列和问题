@@ -1,0 +1,28 @@
+#include <stdio.h>
+int Max(int a[],int n);
+int main()
+{
+    int max,i,n;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    max=Max(a,n);
+    printf("%d",max);
+    return 0;
+}
+int Max(int a[],int n)
+{
+    int i,This=0,max=0;
+    for(i=0;i<n;i++)
+    {
+        This+=a[i];
+        if(This>max)
+        max=This;
+        if(This<0)
+        This=0;
+    }
+    return max;
+}
