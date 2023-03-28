@@ -1,0 +1,35 @@
+List Merge( List L1, List L2 )
+{
+    List L3,Rear;
+    L3=(PtrToNode)malloc(sizeof(struct Node));
+    L3->Next=NULL;
+    Rear=L3;
+    while(L1->Next&&L2->Next)
+    {
+        if(L1->Next->Data<L2->Next->Data)
+        {
+            Rear->Next=L1->Next;
+            L1->Next=L1->Next->Next;
+            Rear=Rear->Next;
+            Rear->Next=NULL;
+        }
+        else
+        {
+            Rear->Next=L2->Next;
+            L2->Next=L2->Next->Next;
+            Rear=Rear->Next;
+            Rear->Next=NULL;
+        }
+    }
+    if(L2->Next)
+    {
+        Rear->Next=L2->Next;
+        L2->Next=NULL;
+    }
+    if(L1->Next)
+    {
+        Rear->Next=L1->Next;
+        L1->Next=NULL;
+    }
+    return L3;
+}
