@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MaxQSize 1000
+typedef enum {false,true}bool;
+typedef int ElementType;
+
+typedef int Position;
+typedef struct QNode *PtrToQNode;
+struct QNode{
+    ElementType *Data;
+    Position Front,Rear;
+    int MaxSize;
+};
+typedef PtrToQNode Queue;
+
+Queue CreateQueue(int MaxSize);
+bool IsEmptyQ(Queue Q);
+void AddQ(Queue Q,ElementType X);
+ElementType DeleteQ(Queue Q);
+
+int main()
+{
+    int N,Customer,i;
+    Queue A,B;
+    A=CreateQueue(MaxQSize);
+    B=CreateQueue(MaxQSize);
+    
+    scanf("%d",&N);
+    for(i=0;i<N;i++)
+    {
+        scanf("%d",&Customer);
+        if(Customer%2)AddQ(A,Customer);
+        else AddQ(B,Customer);
+    }
+    
+    if(!IsEmptyQ(A))printf("%d",DeleteQ(A));
+    else printf("%d",DeleteQ(B));
+    while(!IsEmptyQ(A)&&!IsEmptyQ(B)){
+        printf(" %d",DeleteQ(A));
+        printf(" %d",DeleteQ(B));
+        if(!IsEmptyQ(A))
+        printf(" %d",DeleteQ(A));
+    }
+    while(!IsEmptyQ(A))
+    printf(" %d",DeleteQ(A));
+    while(!IsEmptyQ(B))
+    printf(" %d",DeleteQ(B));
+    printf("\n");
+    return 0;
+}
+
+Queue CreateQueue(int MaxSize){
+    Queue Q=(Queue)malloc(sizeof(struct QNode));
+    Q->Data=(ElementType*)malloc(sizeof(ElementType)*MaxSize);
+    Q->Front=Q->Rear=0;
+    Q->MaxSize=MaxSize;
+    return Q;
+}
+bool IsEmptyQ(Queue Q)
+{
+    return (Q->Front==Q->Rear);
+}
+void AddQ(Queue Q,ElementType X)
+{
+    Q->Rear=(Q->Rear+1)%Q->MaxSize;
+    Q->Data[Q->Rear]=X;
+}
+ElementType DeleteQ(Queue Q)
+{
+    Q->Front=(Q->Front+1)%Q->MaxSize;
+    return Q->Data[Q->Front];
+}
