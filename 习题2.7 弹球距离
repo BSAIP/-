@@ -1,0 +1,10 @@
+double dist( double h, double p )
+{
+    double sum=h,s=p*h;
+    while(s>=TOL)
+    {
+        sum+=s*2;
+        s*=p;
+    }
+    return sum;
+}//有define，要用define里的变量名
