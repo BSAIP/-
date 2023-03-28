@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,A1=0,A2=0,SA3=0,CA3=0,temp;
+    float A3=0;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++) scanf("%d",&a[i]);
+    i=0;
+    while(i<n)
+    {   temp=-1;
+        temp=a[i]%3;
+        switch(temp)
+        {
+            case 0:if(a[i]>A1)
+                    {A1=a[i];}break;
+            case 1:A2+=1;break;
+            case 2:SA3+=a[i];CA3++;break;
+        }
+        i++;
+    }
+    if(A1==0) 
+    printf("NONE");
+    else 
+    printf("%d",A1);
+    if(A2==0) 
+    printf(" NONE");
+    else 
+    printf(" %d",A2);
+    if(SA3==0) 
+    printf(" NONE");
+    else 
+    {   A3=SA3*1.0/CA3;
+        printf(" %.1f",A3);
+    }
+}
