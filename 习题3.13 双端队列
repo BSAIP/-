@@ -1,0 +1,37 @@
+bool Push( ElementType X, Deque D )
+{
+    if((D->Rear+1)%D->MaxSize==D->Front){
+        return false;
+    }
+    D->Front=(D->Front-1+D->MaxSize)%D->MaxSize;
+    D->Data[D->Front]=X;
+    return true;
+}
+ElementType Pop( Deque D )
+{   ElementType ret;
+    if(D->Front==D->Rear){
+        return ERROR;
+    }
+    ret=D->Data[D->Front];
+    D->Front=(D->Front+1)%D->MaxSize;
+    return ret;
+}
+bool Inject( ElementType X, Deque D )
+{
+    if((D->Rear+1)%D->MaxSize==D->Front){
+        return false;
+    }
+    D->Data[D->Rear]=X;
+    D->Rear=(D->Rear+1)%D->MaxSize;
+    return true;
+}
+ElementType Eject( Deque D )
+{
+    if(D->Rear==D->Front){
+        return ERROR;
+    }
+    D->Rear=(D->Rear-1+D->MaxSize)%D->MaxSize;
+    return D->Data[D->Rear];
+}
+//两个问题：1，弄清楚Front和Rear所指的地方，到底能不能存数；
+//         2，时刻注意Front和Rear的正负；
