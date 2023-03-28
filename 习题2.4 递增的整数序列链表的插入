@@ -1,0 +1,16 @@
+List Insert( List L, ElementType X )
+{
+    List pre,tmp;
+    pre=L;
+    while(pre->Next)
+    {
+        if(pre->Next->Data>X) break;
+        else
+        pre=pre->Next;
+    }
+    tmp=(PtrToNode)malloc(sizeof(struct Node));
+    tmp->Data=X;
+    tmp->Next=pre->Next;
+    pre->Next=tmp;
+    return L;
+}
